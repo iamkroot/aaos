@@ -1,0 +1,16 @@
+[submodule "ArchiveTune"]
+	path = ArchiveTune
+	url = git@github.com:iamkroot/ArchiveTune.git
+	branch = main
+[submodule "CarStatsViewer"]
+	path = CarStatsViewer
+	url = git@github.com:iamkroot/CarStatsViewer.git
+	branch = active_development
+[submodule "onstar_firefox"]
+	path = onstar_firefox
+	url = git@github.com:iamkroot/onstar_chrome.git
+	branch = main
+[submodule "PixelMusic"]
+	path = PixelMusic
+	url = git@github.com:iamkroot/PixelMusic.git
+	branch = main

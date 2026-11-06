@@ -1,0 +1,48 @@
+[tools]
+"gem:fastlane" = "latest"
+
+[tasks.bundle]
+description = "Build signed release AAB for Android Automotive OS"
+dir = "{{cwd}}"
+run = """
+if [ ! -f "./gradlew" ]; then
+  echo "❌ Error: ./gradlew not found in $(pwd). Please run from an app directory (e.g. cd PixelMusic && mise run bundle)."
+  exit 1
+fi
+TASK="${GRADLE_TASK_BUNDLE:-bundleGmsAutomotiveUniversalRelease}"
+./gradlew --no-daemon "$TASK" "$@"
+"""
+
+[tasks.apk]
+description = "Build signed release APK for Android Automotive OS"
+dir = "{{cwd}}"
+run = """
+if [ ! -f "./gradlew" ]; then
+  echo "❌ Error: ./gradlew not found in $(pwd). Please run from an app directory (e.g. cd PixelMusic && mise run apk)."
+  exit 1
+fi
+TASK="${GRADLE_TASK_APK:-assembleGmsAutomotiveUniversalRelease}"
+./gradlew --no-daemon "$TASK" "$@"
+"""
+
+[tasks.bump]
+description = "Increment version in gradle.properties or build.gradle.kts (e.g. 'mise run bump', 'mise run bump --minor', or 'mise run bump 0.5.0')"
+dir = "{{cwd}}"
+run = 'python3 "{{config_root}}/tools/bump-version.py" "$@"'
+
+[tasks.release-internal]
+alias = "release"
+description = "Upload release AAB to Google Play automotive:internal track via Fastlane"
+dir = "{{cwd}}"
+run = '"{{config_root}}/tools/release.sh" "$@"'
+
+[tasks.clean]
+description = "Clean gradle build cache and outputs"
+dir = "{{cwd}}"
+run = """
+if [ ! -f "./gradlew" ]; then
+  echo "❌ Error: ./gradlew not found in $(pwd)."
+  exit 1
+fi
+./gradlew clean "$@"
+"""
