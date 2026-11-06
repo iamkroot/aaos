@@ -6,8 +6,8 @@
 	path = CarStatsViewer
 	url = git@github.com:iamkroot/CarStatsViewer.git
 	branch = active_development
-[submodule "onstar_firefox"]
-	path = onstar_firefox
+[submodule "onstar_chrome"]
+	path = onstar_chrome
 	url = git@github.com:iamkroot/onstar_chrome.git
 	branch = main
 [submodule "PixelMusic"]
